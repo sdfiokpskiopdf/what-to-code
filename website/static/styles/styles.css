@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-bg-color: #0F0F0F;
+    --accent-color:  #158566;
+    --tag-color:  #E8BEE7;
+    --text-color:  #F9EEF0;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}

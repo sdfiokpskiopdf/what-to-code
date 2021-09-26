@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Submit{% endblock %}
+
+{% block content %}
+<form method="POST">
+    <fieldset>
+        <legend>Tell the world What to Code</legend>
+        <div class="field">
+            <label class="label" for="title">Title (max. 100)</label>
+            <div class="control">
+                <input maxlength="100" name="title" id="title" class="input" type="text" placeholder="A small step for a human but a big step for mankind" value="">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="description">Description (max. 1000, optional)</label>
+            <div class="control">
+                <textarea name="desc" id="description" class="textarea" placeholder="..."></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}What To Code{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+<div>{{ post.title }}</div>
+{% endfor %}
+{% endblock %}
