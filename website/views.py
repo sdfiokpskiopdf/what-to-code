@@ -16,7 +16,21 @@ views = Blueprint("views", __name__)
 
 @views.route("/")
 def home():
-    posts = Post.query.all()
+    order = request.args.get("order", default="POPULAR", type=str)
+
+    if order == "POPULAR":
+        posts = Post.query.order_by(Post.likes.desc()).all()
+    elif order == "RECENT":
+        posts = Post.query.order_by(Post.date_created.desc()).all()
+    elif order == "OLDEST":
+        posts = Post.query.order_by(Post.date_created.asc()).all()
+    elif order == "RISING":
+        posts = Post.query.order_by(
+            Post.likes.desc(), Post.date_created.desc()
+        ).all()  # might need to fix this
+    else:
+        posts = Post.query.order_by(Post.likes.desc()).all()
+
     return render_template("home.html", posts=posts)
 
 
