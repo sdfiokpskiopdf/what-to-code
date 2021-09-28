@@ -7,7 +7,7 @@ from flask import (
     jsonify,
     session,
 )
-from .models import Post
+from .models import Post, Tag
 from . import db
 import random
 
@@ -39,9 +39,27 @@ def submit():
     if request.method == "POST":
         title = request.form.get("title")
         desc = request.form.get("desc")
+        tags = []
+
+        for i in range(5):
+            tag = request.form.get("tag" + str(i))
+
+            if tag is None:
+                break
+            else:
+                tag = "#" + tag.replace(" ", "")
+                tags.append(tag)
 
         post = Post(title=title, desc=desc, likes=0)
         db.session.add(post)
+        db.session.commit()
+
+        print("Tags:")
+        for t in tags:
+            print(t)
+            tag = Tag(name=t, post_id=post.id)
+            db.session.add(tag)
+
         db.session.commit()
 
         return redirect(url_for("views.home"))

@@ -17,7 +17,7 @@ def create_app():
 
     app.register_blueprint(views, url_prefix="/")
 
-    from .models import Post
+    from .models import Post, Tag
 
     # permanent sessions
     @app.before_request

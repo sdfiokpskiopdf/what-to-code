@@ -14,3 +14,17 @@ function like(postId) {
         })
         .catch((e) => alert("Could not like post"));
 }
+
+var inputCount = 0;
+
+function add_tag() {
+    if (inputCount <= 4) {
+        const container = document.getElementById(`tags`);
+        var input = document.createElement("input");
+        input.name = "tag" + inputCount;
+        strcount = String(parseInt(inputCount) + 1)
+        input.placeholder = "Enter tag " + strcount;
+        container.appendChild(input);
+        inputCount++;
+    }
+}
