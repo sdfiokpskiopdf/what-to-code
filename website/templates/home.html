@@ -3,6 +3,12 @@
 
 {% block content %}
 {% for post in posts %}
-<div>{{ post.title }}</div>
+<div class="card">
+    <p>{{ post.title }}</p>
+    <p>{{ post.desc }}</p>
+    <p id="likes-count-{{post.id}}">Likes: {{ post.likes }}</p>
+    <button type="button" onclick="like({{post.id}})">Like</button>
+</div>
+<br />
 {% endfor %}
 {% endblock %}

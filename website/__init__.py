@@ -1,5 +1,6 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, session
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 import os
 
 db = SQLAlchemy()
@@ -18,7 +19,16 @@ def create_app():
 
     from .models import Post
 
-    create_database(app)
+    # permanent sessions
+    @app.before_request
+    def make_session_permanent():
+        session.permanent = True
+        # make session infinite
+
+    @app.before_request
+    def create_likes_session():
+        if not "likes" in session:
+            session["likes"] = []
 
     # Cache related stuff
     @app.context_processor
@@ -32,6 +42,8 @@ def create_app():
                 file_path = os.path.join(app.root_path, endpoint, filename)
                 values["q"] = int(os.stat(file_path).st_mtime)
         return url_for(endpoint, **values)
+
+    create_database(app)
 
     return app
 

@@ -1,4 +1,12 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    jsonify,
+    session,
+)
 from .models import Post
 from . import db
 import random
@@ -18,7 +26,7 @@ def submit():
         title = request.form.get("title")
         desc = request.form.get("desc")
 
-        post = Post(title=title, desc=desc)
+        post = Post(title=title, desc=desc, likes=0)
         db.session.add(post)
         db.session.commit()
 
@@ -33,3 +41,23 @@ def random_post():
     post = random.choice(posts)
 
     return render_template("home.html", posts=[post])
+
+
+@views.route("/like-post/<post_id>", methods=["POST"])
+def like(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    liked = False
+
+    if not post:
+        return jsonify({"error": "Post does not exist."}, 400)
+    elif int(post_id) in session["likes"]:
+        post.likes -= 1
+        db.session.commit()
+        session["likes"].remove(int(post_id))
+    else:
+        liked = True
+        post.likes += 1
+        db.session.commit()
+        session["likes"].append(int(post_id))
+
+    return jsonify({"likes": post.likes, "liked": liked})
