@@ -32,7 +32,7 @@ This was achieved in the same way as populariy and time sorting. If no tag is pa
 
 Every post is given the "all" tag when it is made.
 
-### Let users like posts anonymously.
+## Let users like posts anonymously.
 This was done by creating an encrypted cookie which stores every post the user has liked. When a post is liked, a POST request is sent to the like route via javascript. This is done via javascript to avoid page refresh to provide a better user experience.
 
 When Flask recieves the post request, it checks if the post id exists in the users liked posts cookie. If it does, it will decrease the number of likes in the post, and if it doesn't it will increase the number of likes. It then returns json which contains data about the number of likes of the post, and whether or not the user has liked it. This json data is read by the javascript code and used to update the number of likes, as well as the like icon and if it should be filled in or not.
