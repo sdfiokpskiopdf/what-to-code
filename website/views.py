@@ -17,9 +17,15 @@ views = Blueprint("views", __name__)
 @views.route("/")
 def home():
     order = request.args.get("order", default="POPULAR", type=str)
+    tag = request.args.get("tag", default="all", type=str)
 
     if order == "POPULAR":
-        posts = Post.query.order_by(Post.likes.desc()).all()
+        posts = (
+            Post.query.join(Tag)
+            .filter(Tag.name == tag)
+            .order_by(Post.likes.desc())
+            .all()
+        )
     elif order == "RECENT":
         posts = Post.query.order_by(Post.date_created.desc()).all()
     elif order == "OLDEST":
@@ -47,16 +53,17 @@ def submit():
             if tag is None:
                 break
             else:
-                tag = "#" + tag.replace(" ", "")
+                tag = tag.replace(" ", "")
                 tags.append(tag)
 
         post = Post(title=title, desc=desc, likes=0)
         db.session.add(post)
         db.session.commit()
 
-        print("Tags:")
+        tag = Tag(name="all", post_id=post.id)
+        db.session.add(tag)
+
         for t in tags:
-            print(t)
             tag = Tag(name=t, post_id=post.id)
             db.session.add(tag)
 
