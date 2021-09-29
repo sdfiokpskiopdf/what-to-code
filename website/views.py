@@ -27,13 +27,19 @@ def home():
             .all()
         )
     elif order == "RECENT":
-        posts = Post.query.order_by(Post.date_created.desc()).all()
+        posts = (
+            Post.query.filter(Tag.name == tag).order_by(Post.date_created.desc()).all()
+        )
     elif order == "OLDEST":
-        posts = Post.query.order_by(Post.date_created.asc()).all()
+        posts = (
+            Post.query.filter(Tag.name == tag).order_by(Post.date_created.asc()).all()
+        )
     elif order == "RISING":
-        posts = Post.query.order_by(
-            Post.likes.desc(), Post.date_created.desc()
-        ).all()  # might need to fix this
+        posts = (
+            Post.query.filter(Tag.name == tag)
+            .order_by(Post.likes.desc(), Post.date_created.desc())
+            .all()
+        )  # might need to fix this
     else:
         posts = Post.query.order_by(Post.likes.desc()).all()
 
