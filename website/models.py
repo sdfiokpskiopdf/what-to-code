@@ -10,6 +10,16 @@ class Post(db.Model):
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     tags = db.relationship("Tag", backref="post", passive_deletes=True)
 
+    def json(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "desc": self.desc,
+            "likes": self.likes,
+            "date_created": self.date_created,
+            "tags": [tag.json() for tag in self.tags],
+        }
+
 
 class Tag(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -17,3 +27,6 @@ class Tag(db.Model):
     post_id = db.Column(
         db.Integer, db.ForeignKey("post.id", ondelete="CASCADE"), nullable=False
     )
+
+    def json(self):
+        return {"id": self.id, "name": self.name, "post_id": self.post_id}

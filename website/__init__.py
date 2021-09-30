@@ -14,8 +14,10 @@ def create_app():
     db.init_app(app)
 
     from .views import views
+    from .api import api
 
     app.register_blueprint(views, url_prefix="/")
+    app.register_blueprint(api, url_prefix="/api/v1")
 
     from .models import Post, Tag
 
