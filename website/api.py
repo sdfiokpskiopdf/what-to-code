@@ -1,19 +1,44 @@
-from flask import (
-    Blueprint,
-    jsonify,
-    session,
-)
+from flask import Blueprint, jsonify, request, session, redirect, url_for
 from . import db
 from .models import Post, Tag
 
 api = Blueprint("api", __name__)
 
 
-@api.route("/posts/")
+@api.route("/posts/", methods=["GET", "POST"])
 def get_posts():
-    posts = [post.json() for post in Post.query.all()]
+    if request.method == "GET":
+        posts = [post.json() for post in Post.query.all()]
 
-    return jsonify({"posts": posts})
+        return jsonify({"posts": posts})
+    elif request.method == "POST":
+        content = request.json
+
+        if (
+            "title" in content
+            and "desc" in content
+            and "tags" in content
+            and type(content["tags"]) == list
+            and type(content["title"]) == str
+            and type(content["desc"]) == str
+            and len(content["tags"]) <= 5
+        ):
+            post = Post(title=content["title"], desc=content["desc"], likes=0)
+            db.session.add(post)
+            db.session.commit()
+
+            tag = Tag(name="all", post_id=post.id)
+            db.session.add(tag)
+
+            for t in content["tags"]:
+                tag = Tag(name=t, post_id=post.id)
+                db.session.add(tag)
+
+            db.session.commit()
+
+            return redirect(url_for("api.get_post", id=post.id))
+        else:
+            return jsonify({"message": "Invalid POST request"}), 400
 
 
 @api.route("/posts/<id>/")

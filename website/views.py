@@ -96,4 +96,3 @@ def random_post():
     post = random.choice(posts)
 
     return render_template("home.html", posts=[post])
-
