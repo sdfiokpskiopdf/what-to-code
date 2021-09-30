@@ -18,30 +18,40 @@ views = Blueprint("views", __name__)
 def home():
     order = request.args.get("order", default="POPULAR", type=str)
     tag = request.args.get("tag", default="all", type=str)
+    page = request.args.get("page", default=1, type=int)
+    per_page = 2
 
     if order == "POPULAR":
         posts = (
             Post.query.join(Tag)
             .filter(Tag.name == tag)
             .order_by(Post.likes.desc())
-            .all()
+            .paginate(page=page, per_page=per_page)
         )
     elif order == "RECENT":
         posts = (
-            Post.query.filter(Tag.name == tag).order_by(Post.date_created.desc()).all()
+            Post.query.filter(Tag.name == tag)
+            .order_by(Post.date_created.desc())
+            .paginate(page=page, per_page=per_page)
         )
     elif order == "OLDEST":
         posts = (
-            Post.query.filter(Tag.name == tag).order_by(Post.date_created.asc()).all()
+            Post.query.filter(Tag.name == tag)
+            .order_by(Post.date_created.asc())
+            .paginate(page=page, per_page=per_page)
         )
     elif order == "RISING":
         posts = (
             Post.query.filter(Tag.name == tag)
             .order_by(Post.likes.desc(), Post.date_created.desc())
-            .all()
+            .paginate(page=page, per_page=per_page)
         )  # might need to fix this
     else:
-        posts = Post.query.order_by(Post.likes.desc()).all()
+        posts = (
+            Post.query.filter(Tag.name == tag)
+            .order_by(Post.likes.desc())
+            .paginate(page=page, per_page=per_page)
+        )
 
     return render_template("home.html", posts=posts)
 
