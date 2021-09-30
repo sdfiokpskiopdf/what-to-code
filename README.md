@@ -6,7 +6,7 @@ This website was made to practice my web development skills. I am trying to repl
 
 - [x] submit coding ideas.
 - [x] get a random idea.
-- [ ] display a dynamically loaded list of all ideas.
+- [x] display a dynamically loaded list of all ideas.
 - [x] sort ideas by popularity and time.
 - [x] filter ideas with specific tags.
 - [x] let users like posts anonymously.
@@ -26,6 +26,15 @@ This was achieved by simply using python to pick a random post from a list of po
 This was achieved by parsing arguments in the URL of the request.
 
 For example, the URL: `https://what-to-code.com/?order=RISING` would be read by flask which would fetch posts from the database as requested by the user by using the `order` parameter.
+
+## Display a dynamically loaded list of all ideas
+This was initially going to be implemented by using some sort of post counter that keeps track of how far the user has scrolled, and loads posts accordingly uses javascript.
+
+However, I decided to do this via pagniation instead. A page argument can be passed to the URL which is read by flask and loaded accordingly.
+
+For example: `https://what-to-code.com/?page=5` will load the fifth page.
+
+I may change this to try and replicate the original website exactly in the future.
 
 ## Filter ideas by specifc tags
 This was achieved in the same way as populariy and time sorting. If no tag is passed, Flask will look for posts with "all" tag.
