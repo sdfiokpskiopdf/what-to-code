@@ -14,7 +14,7 @@ This website was made to practice my web development skills. I am trying to repl
 
 Extras:
 
-- [ ] create an API for the website.
+- [x] create an API for the website.
 
 ## Submit coding ideas
 I achieved this by creating a form that when submitted, sent a POST request to the same page. The python flask backend would then get the form title, description and tags from the form. It would then cleanse the tag data by removing spaces from each tag, and storing the post and tag data in an sqlite database, then redirecting to the home page
