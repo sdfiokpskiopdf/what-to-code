@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, session, redirect, url_for
 from . import db
 from .models import Post, Tag
+import random
 
 api = Blueprint("api", __name__)
 
@@ -49,6 +50,14 @@ def get_post(id):
         return jsonify({"message": "Post does not exists "}), 404
 
     return jsonify({"posts": post})
+
+@api.route("/random/")
+def get_random_post():
+    posts = Post.query.all()
+    post = random.choice(posts)
+
+    return redirect(url_for("api.get_post", id=post.id))
+
 
 
 @api.route("/tags/")

@@ -19,7 +19,7 @@ def home():
     order = request.args.get("order", default="POPULAR", type=str)
     tag = request.args.get("tag", default="all", type=str)
     page = request.args.get("page", default=1, type=int)
-    per_page = 2
+    per_page = 5
 
     if order == "POPULAR":
         posts = (
@@ -53,7 +53,7 @@ def home():
             .paginate(page=page, per_page=per_page)
         )
 
-    return render_template("home.html", posts=posts)
+    return render_template("home.html", posts=posts, one=False)
 
 
 @views.route("/submit/", methods=["GET", "POST"])
@@ -95,4 +95,4 @@ def random_post():
     posts = Post.query.all()
     post = random.choice(posts)
 
-    return render_template("home.html", posts=[post])
+    return render_template("home.html", posts=[post], one=True)
