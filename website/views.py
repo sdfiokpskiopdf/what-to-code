@@ -85,6 +85,8 @@ def submit():
 
         db.session.commit()
 
+        session["posts"].append(post.id)
+
         return redirect(url_for("views.home"))
 
     return render_template("submit.html")

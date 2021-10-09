@@ -25,12 +25,15 @@ def create_app():
     @app.before_request
     def make_session_permanent():
         session.permanent = True
-        # make session infinite
+        # figure out how to make session infinite
 
     @app.before_request
     def create_likes_session():
         if not "likes" in session:
             session["likes"] = []
+
+        if not "posts" in session:
+            session["posts"] = []
 
     # Cache related stuff
     @app.context_processor

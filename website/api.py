@@ -37,6 +37,8 @@ def get_posts():
 
             db.session.commit()
 
+            session["posts"].append(post.id)
+
             return redirect(url_for("api.get_post", id=post.id))
         else:
             return jsonify({"message": "Invalid POST request"}), 400
