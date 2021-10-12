@@ -1,16 +1,146 @@
 * {
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
 }
 
 :root {
-    --main-bg-color: #0F0F0F;
-    --accent-color:  #158566;
-    --tag-color:  #E8BEE7;
-    --text-color:  #F9EEF0;
+    --main-bg-color: #fff;
+    --accent-color:  #f4e04d;
+    --tag-color:  #8db1ab;
+    --text-color:  #4a4a4a;
 }
 
 body {
     background-color: var(--main-bg-color);
     color: var(--text-color);
 }
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: var(--main-bg-color);
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.logo img {
+    max-height: 1.75rem;
+    height: auto;
+}
+
+.nav__links {
+    list-style: none;
+    display: flex;
+}
+  
+.nav__links a,
+.cta,
+.overlay__content a {
+    font-family: sans-serif;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav__links li {
+    padding: 0px 20px;
+}
+
+.nav__links li a {
+    transition: all 0.3s ease 0s;
+}
+  
+.nav__links li a:hover {
+    color: var(--accent-color);
+}
+
+.cta {
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.cta:hover {
+    background-color: var(--accent-color);
+}
+
+/* Mobile Nav */
+
+.menu {
+    display: none;
+}
+  
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: var(--accent-color);
+    overflow-x: hidden;
+    transition: all 0.5s ease 0s;
+}
+
+.overlay--active {
+    width: 100%;
+}
+
+.overlay__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay a {
+    padding: 15px;
+    font-size: 36px;
+    display: block;
+    transition: all 0.3s ease 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+    color: var(--tag-color);
+}
+.overlay .close {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {
+        font-size: 20px;
+    }
+    .overlay .close {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .nav__links,
+    .cta {
+        display: none;
+    }
+    .menu {
+        display: initial;
+    }
+}
+  

@@ -5,12 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}" />
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico')}}" />
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <header>
+        <a class="logo" href="/"><img src="https://what-to-code.com/img/idea.svg" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="{{ url_for('views.random_post')}}">Random Idea</a></li>
+                <li><a href="{{ url_for('views.submit')}}">Submit What To Code</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="#">Contact</a>
+        <p class="menu cta">Menu</p>
+    </header>
+    <div id="mobile__menu" class="overlay">
+        <a class="close">&times;</a>
+        <div class="overlay__content">
+            <a href="{{ url_for('views.random_post')}}">Random Idea</a>
+            <a href="{{ url_for('views.submit')}}">Submit What To Code</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
     <main>
         {% block content %}{% endblock %}
     </main>
     <script type="text/javascript" src="{{ url_for('static', filename='js/index.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mobile.js')}}"></script>
 </body>
 </html>
