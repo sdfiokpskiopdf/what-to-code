@@ -1,5 +1,5 @@
 # what-to-code
-A clone of https://what-to-code.com/. Built with Flask, Html, and CSS
+A clone of https://what-to-code.com/. Built with Python(Flask), Html, CSS, and Javascript
 
 ## Overview
 This website was made to practice my web development skills. I am trying to replicate every feature of the website stated in the decription:
