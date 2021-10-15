@@ -53,7 +53,9 @@ def home():
             .paginate(page=page, per_page=per_page)
         )
 
-    return render_template("home.html", posts=posts, one=False, likes=session["likes"])
+    return render_template(
+        "home.html", posts=posts, order=order, one=False, likes=session["likes"]
+    )
 
 
 @views.route("/submit/", methods=["GET", "POST"])

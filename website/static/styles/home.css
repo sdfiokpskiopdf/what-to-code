@@ -1,8 +1,66 @@
 #content {
     display: flex;
-    row-gap: 2rem;
+    row-gap: 5rem;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
+}
+
+#filter ul {
+    list-style: none;
+    display: flex;
+}
+
+#filter ul li {
+    display: inline-flex;
+    border-style: solid;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 0px;
+    border-color: #dfdfdf;
+}
+
+#filter ul li:hover {
+    border-color: #b5b5b5;
+}
+
+.active {
+    background-color: var(--accent-color);
+}
+
+#filter ul li a {
+    padding: 0.75em;
+}
+
+#filter ul li:first-child {
+    border-bottom-left-radius: 290486px;
+    border-top-left-radius: 290486px;
+}
+
+#filter ul li:last-child {
+    border-top-right-radius: 290486px;
+    border-bottom-right-radius: 290486px;
+}
+
+#filter ul li:last-child a {
+    padding-right: 1.25em;
+}
+
+#filter ul li:first-child a {
+    padding-left: 1.25em;
+}
+
+#page-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    column-gap: 1rem;
+    color: var(--tag-color);
+}
+
+#page-links a:hover {
+    color: #363636;
 }
 
 .card {
@@ -25,10 +83,18 @@
     font-weight: 700;
 }
 
+.desc {
+    margin-bottom: 1.5rem;
+}
+
 .tags {
     color: var(--tag-color);
     font-size: 16px;
     text-align: right;
+}
+
+.tag-link:hover {
+    color: #363636;
 }
 
 .card-footer {
@@ -42,7 +108,7 @@
 
 .card-footer button {
     display: flex;
-    column-gap: 2px;
+    column-gap: 5px;
     color: var(--tag-color); 
 }
 
