@@ -68,7 +68,7 @@
     {% if not one %}
         {% for page_num in posts.iter_pages() %}
             {% if page_num %}
-                <a href="{{ url_for('views.home', page=page_num) }}">{{ page_num }}</a>
+                <a href="{{ url_for('views.home', page=page_num, order=order, tag=tag) }}">{{ page_num }}</a>
             {% else %}
                 ...
             {% endif %}

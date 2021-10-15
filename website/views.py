@@ -9,7 +9,9 @@ from flask import (
 )
 from .models import Post, Tag
 from . import db
+from sqlalchemy import and_
 import random
+from datetime import datetime, timedelta
 
 views = Blueprint("views", __name__)
 
@@ -41,9 +43,10 @@ def home():
             .paginate(page=page, per_page=per_page)
         )
     elif order == "RISING":
+        last_24_hours = datetime.now() - timedelta(hours=24)
         posts = (
-            Post.query.filter(Tag.name == tag)
-            .order_by(Post.likes.desc(), Post.date_created.desc())
+            Post.query.filter(and_(Tag.name == tag, Post.date_created > last_24_hours))
+            .order_by(Post.likes.desc())
             .paginate(page=page, per_page=per_page)
         )  # might need to fix this
     else:
@@ -54,7 +57,12 @@ def home():
         )
 
     return render_template(
-        "home.html", posts=posts, order=order, one=False, likes=session["likes"]
+        "home.html",
+        posts=posts,
+        order=order,
+        tag=tag,
+        one=False,
+        likes=session["likes"],
     )
 
 
