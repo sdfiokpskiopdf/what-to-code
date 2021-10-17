@@ -1,4 +1,7 @@
 # what-to-code
+
+A website to anonymously share programming ideas.
+
 A clone of https://what-to-code.com/. Built with Python(Flask), Html, CSS, and Javascript
 
 ## Overview
