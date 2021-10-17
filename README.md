@@ -1,4 +1,7 @@
 # what-to-code
+
+A website to anonymously share programming ideas.
+
 A clone of https://what-to-code.com/. Built with Python(Flask), Html, CSS, and Javascript
 
 ## Overview
@@ -18,6 +21,7 @@ Extras:
 - [x] create an API for the website.
 - [ ] delete posts button
 - [ ] report posts button
+- [ ] dark / light mode toggle
 
 ## Submit coding ideas
 I achieved this by creating a form that when submitted, sent a POST request to the same page. The python flask backend would then get the form title, description and tags from the form. It would then cleanse the tag data by removing spaces from each tag, and storing the post and tag data in an sqlite database, then redirecting to the home page
