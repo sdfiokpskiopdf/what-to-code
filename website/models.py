@@ -1,5 +1,5 @@
 from . import db
-from datetime import datetime
+from sqlalchemy.sql import func
 
 
 class Post(db.Model):
@@ -7,7 +7,7 @@ class Post(db.Model):
     title = db.Column(db.String(100))
     desc = db.Column(db.String(1000))
     likes = db.Column(db.Integer)
-    date_created = db.Column(db.DateTime(timezone=True), default=datetime.now())
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     tags = db.relationship("Tag", backref="post", passive_deletes=True)
 
     def json(self):
