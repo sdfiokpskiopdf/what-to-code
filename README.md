@@ -14,7 +14,7 @@ This website was made to practice my web development skills. I am trying to repl
 - [x] filter ideas with specific tags.
 - [x] let users like posts anonymously.
 - [ ] caching
-- [ ] a similar UI to the original website.
+- [x] a similar UI to the original website.
 
 Extras:
 
