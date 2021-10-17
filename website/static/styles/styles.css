@@ -12,6 +12,10 @@
     --font-family: 'Lato', sans-serif;
 }
 
+html {
+    text-rendering: optimizeLegibility;
+}
+
 body {
     background-color: var(--main-bg-color);
     color: var(--text-color);
@@ -31,6 +35,13 @@ button, input[type="submit"], input[type="reset"] {
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
 }
 
 main {

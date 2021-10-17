@@ -1,34 +1,40 @@
 {% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='styles/submit.css')}}" />
+{% endblock %}
 {% block title %}Submit{% endblock %}
 
 {% block content %}
-<form method="POST">
-    <fieldset>
-        <legend>Tell the world What to Code</legend>
-        <div class="field">
-            <label class="label" for="title">Title (max. 100)</label>
-            <div class="control">
-                <input maxlength="100" name="title" id="title" class="input" type="text" placeholder="A small step for a human but a big step for mankind" value="">
+<div id="content">
+    <form method="POST">
+        <fieldset>
+            <legend id="main_title">Tell the world What to Code!</legend>
+            <hr />
+            <div class="field">
+                <label class="label" for="title">Title (max. 100)</label>
+                <div class="control">
+                    <input maxlength="100" name="title" id="title" class="input" type="text" placeholder="A small step for a human but a big step for mankind" value="">
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label class="label" for="description">Description (max. 1000, optional)</label>
-            <div class="control">
-                <textarea name="desc" id="description" class="textarea" placeholder="..."></textarea>
+            <div class="field">
+                <label class="label" for="description">Description (max. 1000, optional)</label>
+                <div class="control">
+                    <textarea name="desc" id="description" class="textarea" placeholder="..."></textarea>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <div class="control">
-                <button type="button" class="button" onclick="add_tag()">Add a tag</button>
+            <div class="field">
+                <div class="control">
+                    <button type="button" class="button" onclick="add_tag()">Add a tag</button>
+                </div>
             </div>
-        </div>
-        <div id="tags">
-        </div>
-        <div class="field">
-            <div class="control">
-                <button type="submit" class="button">Submit</button>
+            <div id="tags">
             </div>
-        </div>
-    </fieldset>
-</form>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
 {% endblock %}
