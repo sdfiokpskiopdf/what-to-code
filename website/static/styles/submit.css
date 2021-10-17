@@ -69,3 +69,29 @@ hr {
 	flex-direction: column;
 	row-gap: 1rem;
 }
+
+.button {
+	background-color: var(--accent-color);
+	border-color: transparent;
+	color: rgba(0,0,0,.7);
+	border-radius: 4px;
+}
+
+.tag {
+	padding: .5em 1em;
+}
+
+.field:last-child {
+	align-items: center;
+}
+
+.submit {
+	margin-top: 4rem;
+	padding: .5em 2em;
+}
+
+@media only screen and (max-width: 800px) {
+	form {
+		width: 90%;
+	}
+}
