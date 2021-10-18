@@ -13,15 +13,20 @@ This website was made to practice my web development skills. I am trying to repl
 - [x] sort ideas by popularity and time.
 - [x] filter ideas with specific tags.
 - [x] let users like posts anonymously.
-- [ ] caching
+- [ ] caching.
 - [x] a similar UI to the original website.
 
 Extras:
 
 - [x] create an API for the website.
-- [ ] delete posts button
-- [ ] report posts button
-- [ ] dark / light mode toggle
+- [ ] rate limit API usage.
+- [ ] delete posts button.
+- [ ] report posts button.
+- [ ] dark / light mode toggle.
+- [ ] allow users to reply to posts, anonymously.
+
+## A similar UI
+I understand that the UI for the original website was built using react.js. I have decided to sort of completely reverse engineer the site in pure HTML and CSS, only using javascript for interactive features such as adding tags.
 
 ## Submit coding ideas
 I achieved this by creating a form that when submitted, sent a POST request to the same page. The python flask backend would then get the form title, description and tags from the form. It would then cleanse the tag data by removing spaces from each tag, and storing the post and tag data in an sqlite database, then redirecting to the home page
